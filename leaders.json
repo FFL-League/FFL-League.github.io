@@ -1,5 +1,3 @@
-{
-    "qbs": [{
-        "name": "Joe Burrow"
-    }]
-}
+[{
+    "name": "Joe Burrow"
+}]
