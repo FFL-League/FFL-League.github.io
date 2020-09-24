@@ -16,92 +16,102 @@
                 //     div.innerHTML = div.innerHTML + "<p class='inner' id="+i+">"+ mydata[i].name +"</p>" + "<br>";
                 // }
                 $(function(){
-		            $('table').tablesorter({
-			            widgets        : ['zebra', 'columns'],
-			            usNumberFormat : false,
-			            sortReset      : true,
-			            sortRestart    : true
-		            });
+                  $('table').tablesorter({
+                    widgets        : ['zebra', 'columns'],
+                    usNumberFormat : false,
+                    sortReset      : true,
+                    sortRestart    : true
+                  });
 	            });
             }
         </script>
 </head>
 <body onload="load()">
-<table class="table tablesorter tablesorter-default tablesorterf878f905c747a" id=leaders role="grid">
-  <thead class="thead-dark">
-    <tr role="row" class="tablesorter-headerRow ">
-      <th scope="col" data-column="0" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="player name" style="user-select: none;"><div class="tablesorter-header-inner">Name</div></th>
-      <th scope="col" data-column="1" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="team name" style="user-select: none;"><div class="tablesorter-header-inner">Team</div></th>
-      <th scope="col" data-column="2" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="yards" style="user-select: none;"><div class="tablesorter-header-inner">Yards</div></th>
-      <th scope="col" data-column="3" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">TDs</div></th>
-      <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">Ints</div></th>
-      <th scope="col" data-column="5" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="completion %" style="user-select: none;"><div class="tablesorter-header-inner">Completion %</div></th>
-      <th scope="col" data-column="6" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="rushing yards" style="user-select: none;"><div class="tablesorter-header-inner">Rushing</div></th>
-      <th scope="col" data-column="7" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="rushing touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">Rushing TDs</div></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Joe Burrow</th>
-      <td>Bengals</td>
-      <td>1781</td>
-      <td>11</td>
-      <td>20</td>
-      <td>57%</td>
-      <td>21</td>
-      <td>1</td>
-    </tr>
-    <tr>
-        <th scope="row">Justin Herbert</th>
-        <td>Chargers</td>
-        <td>1770</td>
-        <td>13</td>
-        <td>9</td>
-        <td>76%</td>
-        <td>22</td>
-        <td>0</td>
+<div class="container">
+  <h4>QB Rookie Leaders</h4>
+  <table class="table tablesorter tablesorter-default tablesorterf878f905c747a" id=leaders role="grid">
+    <thead class="thead-dark">
+      <tr role="row" class="tablesorter-headerRow ">
+        <th scope="col" data-column="0" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="player name" style="user-select: none;"><div class="tablesorter-header-inner">Name</div></th>
+        <th scope="col" data-column="1" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="team name" style="user-select: none;"><div class="tablesorter-header-inner">Team</div></th>
+        <th scope="col" data-column="2" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="yards" style="user-select: none;"><div class="tablesorter-header-inner">Yards</div></th>
+        <th scope="col" data-column="3" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">TDs</div></th>
+        <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">Ints</div></th>
+        <th scope="col" data-column="5" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="completion %" style="user-select: none;"><div class="tablesorter-header-inner">Completion %</div></th>
+        <th scope="col" data-column="6" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="rushing yards" style="user-select: none;"><div class="tablesorter-header-inner">Rushing</div></th>
+        <th scope="col" data-column="7" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="rushing touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">Rushing TDs</div></th>
+        <th>Votes</th>
       </tr>
+    </thead>
+    <tbody>
       <tr>
-        <th scope="row">Tua Tagovailoa</th>
-        <td>Dolphins</td>
-        <td>2564</td>
+        <th scope="row">Joe Burrow</th>
+        <td>Bengals</td>
+        <td>1781</td>
+        <td>11</td>
+        <td>20</td>
+        <td>57%</td>
         <td>21</td>
-        <td>14</td>
-        <td>74%</td>
-        <td>30</td>
+        <td>1</td>
         <td>0</td>
       </tr>
       <tr>
-        <th scope="row">Jalen Hurts</th>
-        <td>Eagles</td>
-        <td>1687</td>
-        <td>22</td>
-        <td>5</td>
-        <td>69%</td>
-        <td>318</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <th scope="row">Jordan Love</th>
-        <td>Packers</td>
-        <td>1605</td>
-        <td>13</td>
-        <td>9</td>
-        <td>71%</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <th scope="row">Jacob Eason</th>
-        <td>Titans</td>
-        <td>1906</td>
-        <td>21</td>
-        <td>15</td>
-        <td>69%</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-  </tbody>
-</table>
+          <th scope="row">Justin Herbert</th>
+          <td>Chargers</td>
+          <td>1770</td>
+          <td>13</td>
+          <td>9</td>
+          <td>76%</td>
+          <td>22</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <th scope="row">Tua Tagovailoa</th>
+          <td>Dolphins</td>
+          <td>2564</td>
+          <td>21</td>
+          <td>14</td>
+          <td>74%</td>
+          <td>30</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <th scope="row">Jalen Hurts</th>
+          <td>Eagles</td>
+          <td>1687</td>
+          <td>22</td>
+          <td>5</td>
+          <td>69%</td>
+          <td>318</td>
+          <td>2</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <th scope="row">Jordan Love</th>
+          <td>Packers</td>
+          <td>1605</td>
+          <td>13</td>
+          <td>9</td>
+          <td>71%</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <th scope="row">Jacob Eason</th>
+          <td>Titans</td>
+          <td>1906</td>
+          <td>21</td>
+          <td>15</td>
+          <td>69%</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>
