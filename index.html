@@ -7,6 +7,7 @@
             function load() {
               const passingTable = document.getElementById('passingLeaders');
               const recLeaders = document.getElementById('recLeaders');
+              const rushLeaders = document.getElementById('rushLeaders');
               let passingLeaders;
               let rushingLeaders;
               let recievingLeader;
@@ -14,6 +15,23 @@
               .then(response => response.json())
               .then(data => {
                 console.log(data);
+                data.rushingLeaders.map((leaders) => {
+                  let rushingYards = 0;
+                  let rushingTds = 0;
+                  if (leaders.stats.rushAtt > 0) {
+                    rushingYards = leaders.stats.rushYds;
+                    rushingTds = leaders.stats.rushTDs;
+                  }
+                  rushLeaders.innerHTML += `<tr>
+                    <td>${leaders.firstName} ${leaders.lastName}</td>
+                    <td>${leaders.teamName}</td>
+                    <td>${leaders.stats.rushYds}</td>
+                    <td>${leaders.stats.rushTDs}</td>
+                    <td>${leaders.stats.recCatches}</td>
+                    <td>${leaders.stats.recYds}</td>
+                    <td>${leaders.stats.recTDs}</td>
+                  </tr>`;
+                });
                 data.passingLeaders.map((leaders) => {
                   let rushingYards = 0;
                   let rushingTds = 0;
@@ -95,6 +113,22 @@
       </tr>
     </thead>
     <tbody id="recLeaders">
+    </tbody>
+  </table>
+  <h4>Rushing Rookie Leaders</h4>
+  <table class="table tablesorter tablesorter-default tablesorterf878f905c747a" id=leaders role="grid">
+    <thead class="thead-dark">
+      <tr role="row" class="tablesorter-headerRow ">
+        <th scope="col" data-column="0" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="player name" style="user-select: none;"><div class="tablesorter-header-inner">Name</div></th>
+        <th scope="col" data-column="1" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="team name" style="user-select: none;"><div class="tablesorter-header-inner">Team</div></th>
+        <th scope="col" data-column="2" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="yards" style="user-select: none;"><div class="tablesorter-header-inner">Yards</div></th>
+        <th scope="col" data-column="3" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">TDs</div></th>
+        <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">Catches</div></th>
+        <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">Yards </div></th>
+        <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">TDs </div></th>
+      </tr>
+    </thead>
+    <tbody id="rushLeaders">
     </tbody>
   </table>
 </body>
