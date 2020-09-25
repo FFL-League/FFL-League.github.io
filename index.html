@@ -1,20 +1,39 @@
 <html>
 <head>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-     <script type="text/javascript" src="leaders.js" ></script>
      <script type="text/javascript" src="jquery-3.5.1.js" ></script>
      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js" ></script>
         <script type="text/javascript" >
             function load() {
-                // const mydata = JSON.parse(leaders);
-                console.log(leaders);
-
-                // const div = document.getElementById('data');
-
-                // for(var i = 0;i < mydata.length; i++)
-                // {
-                //     div.innerHTML = div.innerHTML + "<p class='inner' id="+i+">"+ mydata[i].name +"</p>" + "<br>";
-                // }
+              const passingTable = document.getElementById('passingLeaders');
+              let passingLeaders;
+              let rushingLeaders;
+              let recievingLeader;
+              fetch('https://gametime-21.herokuapp.com/1694390/rookie/stats')
+              .then(response => response.json())
+              .then(data => {
+                console.log(data);
+                data.passingLeaders.map((leaders) => {
+                  let rushingYards = 0;
+                  let rushingTds = 0;
+                  if (leaders.stats.rushAtt > 0) {
+                    rushingYards = leaders.stats.rushYds;
+                    rushingTds = leaders.stats.rushTDs;
+                  }
+                  const passingC = parseFloat(leaders.stats.passCompPct).toFixed(2)+"%";
+                  passingTable.innerHTML += `<tr>
+                    <td>${leaders.firstName} ${leaders.lastName}</td>
+                    <td>${leaders.teamName}</td>
+                    <td>${leaders.stats.passYds}</td>
+                    <td>${leaders.stats.passTDs}</td>
+                    <td>${leaders.stats.passInts}</td>
+                    <td>${passingC}</td>
+                    <td>${rushingYards}</td>
+                    <td>${rushingTds}</td>
+                  </tr>`;
+                })
+              });
+              
                 $(function(){
                   $('table').tablesorter({
                     widgets        : ['zebra', 'columns'],
@@ -39,76 +58,9 @@
         <th scope="col" data-column="5" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="completion %" style="user-select: none;"><div class="tablesorter-header-inner">Completion %</div></th>
         <th scope="col" data-column="6" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="rushing yards" style="user-select: none;"><div class="tablesorter-header-inner">Rushing</div></th>
         <th scope="col" data-column="7" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="rushing touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">Rushing TDs</div></th>
-        <th>Votes</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <th scope="row">Joe Burrow</th>
-        <td>Bengals</td>
-        <td>1781</td>
-        <td>11</td>
-        <td>20</td>
-        <td>57%</td>
-        <td>21</td>
-        <td>1</td>
-        <td>0</td>
-      </tr>
-      <tr>
-          <th scope="row">Justin Herbert</th>
-          <td>Chargers</td>
-          <td>1770</td>
-          <td>13</td>
-          <td>9</td>
-          <td>76%</td>
-          <td>22</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <th scope="row">Tua Tagovailoa</th>
-          <td>Dolphins</td>
-          <td>2564</td>
-          <td>21</td>
-          <td>14</td>
-          <td>74%</td>
-          <td>30</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <th scope="row">Jalen Hurts</th>
-          <td>Eagles</td>
-          <td>1687</td>
-          <td>22</td>
-          <td>5</td>
-          <td>69%</td>
-          <td>318</td>
-          <td>2</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <th scope="row">Jordan Love</th>
-          <td>Packers</td>
-          <td>1605</td>
-          <td>13</td>
-          <td>9</td>
-          <td>71%</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <th scope="row">Jacob Eason</th>
-          <td>Titans</td>
-          <td>1906</td>
-          <td>21</td>
-          <td>15</td>
-          <td>69%</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
+    <tbody id="passingLeaders">
     </tbody>
   </table>
 </body>
