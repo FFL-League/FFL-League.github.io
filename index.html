@@ -8,9 +8,8 @@
               const passingTable = document.getElementById('passingLeaders');
               const recLeaders = document.getElementById('recLeaders');
               const rushLeaders = document.getElementById('rushLeaders');
-              let passingLeaders;
-              let rushingLeaders;
-              let recievingLeader;
+              const defLeaders = document.getElementById('tackleLeaders');
+              const intLeaders = document.getElementById('intLeaders');
               fetch('https://gametime-21.herokuapp.com/1694390/rookie/stats')
               .then(response => response.json())
               .then(data => {
@@ -67,7 +66,30 @@
                     <td>${leaders.stats.recCatches}</td>
                     <td>${leaders.stats.recDrops}</td>
                   </tr>`;
-                })
+                });
+
+                data.defenseLeaders.map((leaders) => {
+                  defLeaders.innerHTML += `<tr>
+                    <td>${leaders.firstName} ${leaders.lastName}</td>
+                    <td>${leaders.teamName}</td>
+                    <td>${leaders.stats.defTotalTackles}</td>
+                    <td>${leaders.stats.defSacks}</td>
+                    <td>${leaders.stats.defForcedFum}</td>
+                    <td>${leaders.stats.defInts}</td>
+                    <td>${leaders.stats.defTDs}</td>
+                  </tr>`;
+                });
+
+                data.intLeaders.map((leaders) => {
+                  intLeaders.innerHTML += `<tr>
+                    <td>${leaders.firstName} ${leaders.lastName}</td>
+                    <td>${leaders.teamName}</td>
+                    <td>${leaders.stats.defInts}</td>
+                    <td>${leaders.stats.defTotalTackles}</td>
+                    <td>${leaders.stats.defDeflections}</td>
+                    <td>${leaders.stats.defTDs}</td>
+                  </tr>`;
+                });
               });
               
                 $(function(){
@@ -129,6 +151,39 @@
       </tr>
     </thead>
     <tbody id="rushLeaders">
+    </tbody>
+  </table>
+
+  <h4>Defense Rookie Leaders (Tackles)</h4>
+  <table class="table tablesorter tablesorter-default tablesorterf878f905c747a" id=leaders role="grid">
+    <thead class="thead-dark">
+      <tr role="row" class="tablesorter-headerRow ">
+        <th scope="col" data-column="0" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="player name" style="user-select: none;"><div class="tablesorter-header-inner">Name</div></th>
+        <th scope="col" data-column="1" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="team name" style="user-select: none;"><div class="tablesorter-header-inner">Team</div></th>
+        <th scope="col" data-column="2" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="yards" style="user-select: none;"><div class="tablesorter-header-inner">Tackles</div></th>
+        <th scope="col" data-column="3" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">Sack </div></th>
+        <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">FFs</div></th>
+        <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">Ints</div></th>
+        <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">TDs</div></th>
+      </tr>
+    </thead>
+    <tbody id="tackleLeaders">
+    </tbody>
+  </table>
+
+  <h4>Defense Rookie Leaders (Ints)</h4>
+  <table class="table tablesorter tablesorter-default tablesorterf878f905c747a" id=leaders role="grid">
+    <thead class="thead-dark">
+      <tr role="row" class="tablesorter-headerRow ">
+        <th scope="col" data-column="0" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="player name" style="user-select: none;"><div class="tablesorter-header-inner">Name</div></th>
+        <th scope="col" data-column="1" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="team name" style="user-select: none;"><div class="tablesorter-header-inner">Team</div></th>
+        <th scope="col" data-column="2" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="yards" style="user-select: none;"><div class="tablesorter-header-inner">Ints</div></th>
+        <th scope="col" data-column="3" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">Tackles</div></th>
+        <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">Deflections</div></th>
+        <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">TDs </div></th>
+      </tr>
+    </thead>
+    <tbody id="intLeaders">
     </tbody>
   </table>
 </body>
