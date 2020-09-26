@@ -1,0 +1,64 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js" ></script>
+    <script type="text/javascript">
+        // Dev Trait 0 = Normal 1 = Star? 2 = Superstar 3  = XFactor 
+        function onLoad() {
+            const faTable = document.getElementById('upcomingFA');
+            fetch('http://localhost:8080/1694390/upcoming/fa')
+              .then(response => response.json())
+              .then(data => {
+                data.map((player) => {
+                    if (player.devTrait === 0) player.devTrait = 'Normal';
+                    if (player.devTrait === 1) player.devTrait = 'Star';
+                    if (player.devTrait === 2) player.devTrait = 'Superstar';
+                    if (player.devTrait === 3) player.devTrait = 'XFactor';
+                    faTable.innerHTML += `<tr>
+                        <th scope="row">${player.firstName} ${player.lastName}</th>
+                        <td>${player.playerBestOvr}</td>
+                        <td>${player.position}</td>
+                        <td>${player.devTrait}</td>
+                        <td>${player.age}</td>
+                        <td>${player.teamName}</td>
+                        <td>${player.yearsPro}</td>
+                    </tr>`;
+                });
+              })
+              $(function(){
+            $('#player').tablesorter({
+            widgets        : ['zebra', 'columns'],
+            usNumberFormat : false,
+            sortReset      : true,
+            sortRestart    : true
+            });
+        });
+        }
+    </script>
+</head>
+
+<body onload="onLoad()">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Upcoming Free Agents</h2>
+                <table class="table table-striped tablesorter tablesorter-default tablesorterf878f905c747a" id="player" role="grid">
+                    <thead>
+                        <tr role="row" class="tablesorter-headerRow ">
+                            <th scope="col" data-column="0" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="player name" style="user-select: none;"><div class="tablesorter-header-inner">Name</div></th>
+                            <th scope="col" data-column="1" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="team name" style="user-select: none;"><div class="tablesorter-header-inner">Overall</div></th>
+                            <th scope="col" data-column="2" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="yards" style="user-select: none;"><div class="tablesorter-header-inner">Postion</div></th>
+                            <th scope="col" data-column="3" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">Dev Trait</div></th>
+                            <th scope="col" data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="interceptions" style="user-select: none;"><div class="tablesorter-header-inner">Age</div></th>
+                            <th scope="col" data-column="5" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="completion %" style="user-select: none;"><div class="tablesorter-header-inner">Team</div></th>
+                            <th scope="col" data-column="7" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="rushing touchdowns" style="user-select: none;"><div class="tablesorter-header-inner">Years Pro</div></th>
+                        </tr>
+                    </thead>
+                    <tbody id="upcomingFA">
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</body>
