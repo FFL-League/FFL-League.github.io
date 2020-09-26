@@ -7,7 +7,7 @@
         // Dev Trait 0 = Normal 1 = Star? 2 = Superstar 3  = XFactor 
         function onLoad() {
             const faTable = document.getElementById('upcomingFA');
-            fetch('http://localhost:8080/1694390/upcoming/fa')
+            fetch('https://gametime-21.herokuapp.com/1694390/upcoming/fa')
               .then(response => response.json())
               .then(data => {
                 data.map((player) => {
